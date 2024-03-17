@@ -6,7 +6,6 @@ const pool = require('../db'); // Adjust the path as necessary
 
 //delete location history
 router.post('/location_delete', (req, res) => {
-   console.log("hii")
     const sql = 'delete from location_history';
 
     pool.getConnection((err, connection) => {
@@ -31,8 +30,6 @@ router.post('/location_delete', (req, res) => {
 //fectch location details
 router.post('/location_history', (req, res) => {
     const { mobile } = req.body;
-    console.log(mobile)
-
     const sql = 'SELECT * FROM location_history WHERE mobile = ?';
 
     pool.getConnection((err, connection) => {

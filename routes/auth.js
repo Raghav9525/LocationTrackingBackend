@@ -33,7 +33,6 @@ router.post('/login', (req, res) => {
             // Use results.length to check if any rows are returned
             if (results.length > 0) {
                 const token = generateToken(mobile); // Assuming you have this function defined to generate a token
-                console.log(token);
         
                 // Send token as response
                 res.status(200).json({ token: token });
