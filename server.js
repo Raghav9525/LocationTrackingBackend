@@ -19,8 +19,6 @@ app.use(cors({
 
 const server = http.createServer(app);
 
-
-
 app.use('/', index);
 app.use('/auth',auth)
 

@@ -4,6 +4,29 @@ const router = express.Router();
 
 const pool = require('../db'); // Adjust the path as necessary
 
+//delete location history
+router.post('/location_delete', (req, res) => {
+   console.log("hii")
+    const sql = 'delete from location_history';
+
+    pool.getConnection((err, connection) => {
+        if (err) {
+            res.status(500).json({ message: "Internal server error" });
+            return;
+        }
+        
+        connection.query(sql, (error, results) => {
+            connection.release(); // Release the connection when done with it
+            
+            if (error) {
+                res.status(500).json({ message: "Failed to delete Location history" });
+            } else {
+                console.log("deleted")
+                res.status(200).json({ message: "Location history deleted successfully" });
+            }
+        });
+    });
+});
 
 //fectch location details
 router.post('/location_history', (req, res) => {
