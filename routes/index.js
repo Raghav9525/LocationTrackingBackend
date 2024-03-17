@@ -55,7 +55,7 @@ router.post('/location_history', (req, res) => {
 //store location
 router.post('/location', (req, res) => {
     const { mobile, current_location } = req.body;
-    const sql = 'INSERT INTO location_history (mobile, location, time) VALUES (?, ?, NOW())'; // Using NOW() to get the current timestamp
+    const sql = `INSERT INTO location_history (mobile, location, time) VALUES (?, ?, CONVERT_TZ(NOW(), @@session.time_zone, '+05:30'))`;
     
     pool.getConnection((err, connection) => {
         if (err) {
